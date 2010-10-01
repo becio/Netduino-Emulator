@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -22,7 +19,6 @@ namespace Netduino.SimpleEmulator.Converters
                     return _falseBrush;
                 default:
                     return _trueBrush;
-                    break;
             }
         }
         public object ConvertBack(object value, Type targetType,

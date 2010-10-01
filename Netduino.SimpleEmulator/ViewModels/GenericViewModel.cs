@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.Composition;
 using Caliburn.Micro;
 using Netduino.Core.ViewModels;
@@ -242,11 +239,8 @@ namespace Netduino.SimpleEmulator.ViewModels
         public void OnBoardSwitch()
         {
             _switchState = !_switchState;
-            if (_switchState)
-                Switch1ButtonText = "Turn Onboard LED Off";
-            else
-                Switch1ButtonText = "Turn Onboard LED On";
-            _eventAggregator.Publish<InputGpioEventArgs>(new InputGpioEventArgs(Pins.ONBOARD_SW1,_switchState));
+            Switch1ButtonText = _switchState ? "Turn Onboard LED Off" : "Turn Onboard LED On";
+            _eventAggregator.Publish(new InputGpioEventArgs(Pins.ONBOARD_SW1,_switchState));
         }
 
 		#region IHandle<GpioEvent> Members
