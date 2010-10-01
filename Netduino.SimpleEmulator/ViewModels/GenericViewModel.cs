@@ -18,7 +18,7 @@ namespace Netduino.SimpleEmulator.ViewModels
             _eventAggregator = eventAggregator;
 			_eventAggregator.Subscribe(this);
 		}
-        private string _switch1ButtonText = "Turn Onboard LED On";
+        private string _switch1ButtonText = "Off";
         public string Switch1ButtonText
         {
             get { return _switch1ButtonText; }
@@ -239,7 +239,7 @@ namespace Netduino.SimpleEmulator.ViewModels
         public void OnBoardSwitch()
         {
             _switchState = !_switchState;
-            Switch1ButtonText = _switchState ? "Turn Onboard LED Off" : "Turn Onboard LED On";
+            Switch1ButtonText = _switchState ? "On" : "Off";
             _eventAggregator.Publish(new InputGpioEventArgs(Pins.ONBOARD_SW1,_switchState));
         }
 

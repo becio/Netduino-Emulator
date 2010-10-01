@@ -4,128 +4,135 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cnv="clr-namespace:Netduino.SimpleEmulator.Converters"
-             mc:Ignorable="d"
-             >
+             mc:Ignorable="d" Width="359" Height="270">
+    <UserControl.Background>
+        <ImageBrush ImageSource="..\Images\netduino.gif" />
+    </UserControl.Background>
     <UserControl.Resources>
-        <cnv:BoolToBrushConverter x:Key="ledBrushConverter" BrushForFalse="Black" BrushForTrue="Green"/>
+        <cnv:BoolToBrushConverter x:Key="ledBrushConverter" BrushForFalse="Transparent" BrushForTrue="Green"/>
+        <Style TargetType="{x:Type Rectangle}">
+            <Setter Property="RadiusX" Value="5" />
+            <Setter Property="RadiusY" Value="5" />
+        </Style>
     </UserControl.Resources>
-    <Grid Margin="10,10,10,10">
+    
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="51*" />
+            <RowDefinition Height="52*" />
+            <RowDefinition Height="152*" />
+            <RowDefinition Height="81*" />
+            <RowDefinition Height="284*" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="638*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="836*" />
+            <ColumnDefinition Width="61*" />
+            <ColumnDefinition Width="68*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="70*" />
+            <ColumnDefinition Width="63*" />
+            <ColumnDefinition Width="69*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="58*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="68*" />
+            <ColumnDefinition Width="68*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="69*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="69*" />
+            <ColumnDefinition Width="112*" />
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Row="0" Grid.Column="0" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO0" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Center">0</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="1" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO1" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center">1</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="2" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO2" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="2" TextAlignment="Center">2</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="3" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO3" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="3" TextAlignment="Center">3</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="4" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO4" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="4" TextAlignment="Center">4</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="5" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO5" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="5" TextAlignment="Center">5</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="6" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO6" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="6" TextAlignment="Center">6</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="7" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO7" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="7" TextAlignment="Center">7</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="8" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO8" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="8" TextAlignment="Center">8</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="9" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO9" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="9" TextAlignment="Center">9</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="10" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO10" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="10" TextAlignment="Center">10</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="11" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO11" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="11" TextAlignment="Center">11</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="12" Width="20" Height="20" RadiusX="5" RadiusY="5">
-            <Rectangle.Fill>
-                <Binding Path="DIO12" Converter="{StaticResource ledBrushConverter}"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="12" TextAlignment="Center">12</TextBlock>
-        <Rectangle Grid.Row="0" Grid.Column="13" Width="20" Height="20" RadiusX="5" RadiusY="5">
+        <Rectangle Grid.Column="1" Grid.Row="1">
             <Rectangle.Fill>
                 <Binding Path="DIO13" Converter="{StaticResource ledBrushConverter}"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock Grid.Row="1" Grid.Column="13" TextAlignment="Center">13</TextBlock>
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="14" HorizontalAlignment="Center">
+        <Rectangle Grid.Column="2" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO12" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="3" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO11" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="4" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO10" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="5" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO9" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="6" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO8" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="8" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO7" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="9" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO6" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="10" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO5" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="11" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO4" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="12" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO3" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="13" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO2" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="14" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO1" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Column="15" Grid.Row="1">
+            <Rectangle.Fill>
+                <Binding Path="DIO0" Converter="{StaticResource ledBrushConverter}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="5" Name="grid1" Margin="0,0,0,1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="31*" />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Row="0" Grid.Column="0" Width="20" Height="20" RadiusX="5" RadiusY="5" Margin="10,10,10,10">
+            <Button Name="OnBoardSwitch" Content="{Binding Switch1ButtonText}" Grid.Column="1" FontSize="8"></Button>
+        </Grid>
+        <Grid Grid.Column="13" Grid.ColumnSpan="2" Grid.Row="3" Name="grid2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="22*" />
+                <ColumnDefinition Width="31*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle RadiusX="3" Grid.Column="1">
                 <Rectangle.Fill>
-                    <Binding Path="OnBoardLed" Converter="{StaticResource ledBrushConverter}"/>
+                    <Binding Path="OnBoardLed" Converter="{StaticResource ledBrushConverter}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Button Name="OnBoardSwitch" Grid.Row="0" Grid.Column="1" Content="{Binding Switch1ButtonText}" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
         </Grid>
     </Grid>
 </UserControl>

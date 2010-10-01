@@ -9,6 +9,7 @@ namespace Netduino.SimpleEmulator.Converters
     {
         private Brush _falseBrush = Brushes.Red;
         private Brush _trueBrush = Brushes.Green;
+
         #region IValueConverter Members
         public object Convert(object value, Type targetType,
           object parameter, System.Globalization.CultureInfo culture)
