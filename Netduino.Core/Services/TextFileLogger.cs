@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Caliburn.Micro;
 using System.IO;
+using Caliburn.Micro;
 
-namespace Netduino.Core.Service
+namespace Netduino.Core.Services
 {
     public class TextFileLogger : ILog
     {

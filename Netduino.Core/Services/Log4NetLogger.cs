@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 
 namespace Netduino.Core.Services
 {
-    public class Log4netLogger : ILog
+    public class Log4NetLogger : ILog
     {
         #region Fields
         private readonly log4net.ILog _innerLogger;
         #endregion
 
         #region Constructors
-        public Log4netLogger(Type type)
+        public Log4NetLogger(Type type)
         {
             //_innerLogger = log4net.LogManager.GetLogger(type);
             log4net.ILog[] loggers = log4net.LogManager.GetCurrentLoggers();

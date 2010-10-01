@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Caliburn.Micro;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.IO;
+using Caliburn.Micro;
 
 namespace Netduino.Core.ViewModels
 {
@@ -15,7 +11,7 @@ namespace Netduino.Core.ViewModels
     public class ShellViewModel :Conductor<Screen>,IShellViewModel
     {
         private string _emulatorName;
-        private string _keyBase = @"HKEY_CURRENT_USER\Software\Microsoft\.NETMicroFramework\v4.1\Emulators\{45D406A2-51DD-4662-ABDD-499BD9589AF1}";
+        private const string KeyBase = @"HKEY_CURRENT_USER\Software\Microsoft\.NETMicroFramework\v4.1\Emulators\{45D406A2-51DD-4662-ABDD-499BD9589AF1}";
         private IWindowManager _windowManager;
         private IEmulatorViewModel _emulatorViewModel;
         private readonly ILog _log = LogManager.GetLog(typeof(ShellViewModel));
@@ -26,8 +22,7 @@ namespace Netduino.Core.ViewModels
             _log.Info("ShellViewModel Constructor");
             _windowManager = windowManager;
             _emulatorViewModel = viewModel;
-            this.DisplayName = "Netduino Emulator";
-            
+            DisplayName = "Netduino Emulator";
         }
 
         public string EmulatorName
@@ -69,15 +64,15 @@ namespace Netduino.Core.ViewModels
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "Netduino.Shell.exe"); ;
 
-            Microsoft.Win32.Registry.SetValue(_keyBase, "Name", EmulatorName);
-            Microsoft.Win32.Registry.SetValue(_keyBase, "Path", path);
+            Microsoft.Win32.Registry.SetValue(KeyBase, "Name", EmulatorName);
+            Microsoft.Win32.Registry.SetValue(KeyBase, "Path", path);
 
         }
 
         protected override void OnActivate()
         {
             base.OnActivate();
-            Screen view = (Screen)IoC.Get<IEmulatorViewModel>();
+            var view = (Screen)IoC.Get<IEmulatorViewModel>();
             ChangeActiveItem(view, true);
         }
     }

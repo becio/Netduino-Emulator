@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
@@ -10,9 +9,6 @@ using System.Reflection;
 using Netduino.Core.ViewModels;
 using Netduino.Core.Services;
 using System.IO;
-using Microsoft.SPOT.Tasks;
-using System.Xml;
-using Netduino.Core.Service;
 
 namespace Netduino.Core
 {
@@ -21,11 +17,11 @@ namespace Netduino.Core
     /// </summary>
 	public class EmulatorBootstrapper : Bootstrapper<IShellViewModel>
 	{
-		private CompositionContainer container;
+		private CompositionContainer _container;
 
         static EmulatorBootstrapper()
         {
-            LogManager.GetLog = type => new Log4netLogger(type);
+            LogManager.GetLog = type => new Log4NetLogger(type);
         }
 
         /// <summary>
@@ -34,25 +30,25 @@ namespace Netduino.Core
         protected override void Configure()
 		{
 
-            AggregateCatalog catalog = new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>());
-			container = new CompositionContainer(catalog);
+            var catalog = new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>());
+			_container = new CompositionContainer(catalog);
 
 			var batch = new CompositionBatch();
 
 			batch.AddExportedValue<IWindowManager>(new WindowManager());
 
             IEventAggregator aggregator = new EventAggregator();
-			batch.AddExportedValue<IEventAggregator>(aggregator);
+			batch.AddExportedValue(aggregator);
 			
-            EmulatorService service = new EmulatorService(aggregator);
-			batch.AddExportedValue<IEmulatorService>(service);
+            var emulatorService = new EmulatorService(aggregator);
+			batch.AddExportedValue<IEmulatorService>(emulatorService);
 			
-            batch.AddExportedValue(container);
+            batch.AddExportedValue(_container);
 
-			container.Compose(batch);
+			_container.Compose(batch);
 
             // Start the emulator
-			service.StartEmulator();
+			emulatorService.StartEmulator();
 		}
 
         /// <summary>
@@ -64,7 +60,7 @@ namespace Netduino.Core
 		protected override object GetInstance(Type serviceType, string key)
 		{
 			string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
-			var exports = container.GetExportedValues<object>(contract);
+			var exports = _container.GetExportedValues<object>(contract);
 
 			if (exports.Count() > 0)
 				return exports.First();
@@ -74,12 +70,12 @@ namespace Netduino.Core
 
 		protected override IEnumerable<object> GetAllInstances(Type serviceType)
 		{
-			return container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+			return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
 		}
 
 		protected override void BuildUp(object instance)
 		{
-			container.SatisfyImportsOnce(instance);
+			_container.SatisfyImportsOnce(instance);
 		}
 		
         /// <summary>
@@ -88,7 +84,7 @@ namespace Netduino.Core
         /// <returns></returns>
         protected override IEnumerable<Assembly> SelectAssemblies()
 		{
-            return new Assembly[] { Assembly.GetExecutingAssembly(), Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Extensions\NetduinoEmulator.dll")) };
+            return new[] { Assembly.GetExecutingAssembly(), Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Extensions\NetduinoEmulator.dll")) };
         }
 		
         /// <summary>

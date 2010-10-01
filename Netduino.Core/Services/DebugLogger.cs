@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 using System.Diagnostics;
 
@@ -21,7 +18,7 @@ namespace Netduino.Core.Services
 		#endregion
 
 		#region Helper Methods
-		private string CreateLogMessage(string format, params object[] args)
+		private static string CreateLogMessage(string format, params object[] args)
 		{
 			return string.Format("[{0}] {1}",
 								 DateTime.Now.ToString("o"),
